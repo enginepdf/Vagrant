@@ -1,0 +1,73 @@
+Physical computer = host
+Virtual computer = guest
+
+
+Vagrant Boxes
+
+Box = Operating System Image
+
+vagrant box add USER/Box
+
+Vagrant project=Folder with a Vagrantfile
+
+mkdir vm
+cd vm
+vagrant init [user]/centos7    // creating Vagrantfile in the folder
+
+vagrant up   // Vagrant will import the box into VirtualBox and start it(all the VM specified on Vagrantfile - Multi-Machine)
+
+// The VM is started in headless mode(you can check on VirtualBox)
+
+vagrant up [vm_name]
+
+
+vagrant ssh [vm_name]   // ssh client required(or install Git)
+exit
+
+
+vagrant halt [vm_name]
+
+vagrant up [vm_name]
+
+vagrant suspend [vm_name]
+
+vagrant resume [vm_name]
+
+vagrant destroy [vm_name]  : removes the VM
+
+vagrant   : list options
+
+
+
+```Vagrantfile
+Vagrant.configure(2) do |config|             // configuration version
+    config.vm.box = "[user]/centos7"
+    config.vm.hostname="linuxsvr1"
+    config.vm.network "private_network", ip: "192.100.100.1"      // assign static ip address to the machine. only can be accessed by host machine or other vagrant VM on the same network
+    config.vm.provide "virtualbox" do |vb|
+        vb.gui=true
+        vb.memory="1024"
+    end
+    config.vm.provision "shell", path: "setup.sh"
+    config.vm.provision :shell, :inline => "sudo apt-get install -y <package>"
+    config.vm.synced_folder
+    config.vm.network "forwarded_port", guest: 80, host: 3000
+end
+```
+
+
+```
+Vagrant.configure(2) do |config|
+    config.vm.box="[user]/centos7"
+
+    config.vm.define "api1" do |api1|
+        api1.vm.hostname="api1"
+        api1.vm.network "private_network", ip: "192.100.100.1"
+    end
+
+    config.vm.define "api2" do |api2|
+        api2.vm.hostname="api2"
+        api2.vm.network "private_network", ip: "192.100.100.2"
+    end
+end
+```
