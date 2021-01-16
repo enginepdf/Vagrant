@@ -13,6 +13,7 @@ Vagrant project=Folder with a Vagrantfile
 mkdir vm
 cd vm
 vagrant init [user]/centos7    // creating Vagrantfile in the folder
+// vagrant init  //  make Vagrantfile on the directory
 
 vagrant up   // Vagrant will import the box into VirtualBox and start it(all the VM specified on Vagrantfile - Multi-Machine)
 
@@ -34,6 +35,8 @@ vagrant suspend [vm_name]
 vagrant resume [vm_name]
 
 vagrant destroy [vm_name]  : removes the VM
+
+vagrant ssh   // password for the vagrant account, the root account is 'vagrant'
 
 vagrant   : list options
 
