@@ -6,7 +6,7 @@ Vagrant Boxes
 
 Box = Operating System Image
 
-vagrant box add USER/Box
+vagrant box add USER/Box  // download and store that box on your local
 
 Vagrant project=Folder with a Vagrantfile
 
