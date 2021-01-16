@@ -1,3 +1,6 @@
+Vagrantfile controls the behavior and settings of the virtual machine
+
+
 Physical computer = host
 Virtual computer = guest
 
@@ -23,6 +26,9 @@ vagrant up [vm_name]
 
 
 vagrant ssh [vm_name]   // ssh client required(or install Git)
+                        // password for the vagrant account, the root account is 'vagrant'
+                        // [vagrant@hostname ~]$
+
 exit
 
 
@@ -34,9 +40,9 @@ vagrant suspend [vm_name]
 
 vagrant resume [vm_name]
 
-vagrant destroy [vm_name]  : removes the VM
+vagrant destroy [vm_name]  : removes the VM 
 
-vagrant ssh   // password for the vagrant account, the root account is 'vagrant'
+vagrant reload   // vagrant halt; vagrant up
 
 vagrant   : list options
 
